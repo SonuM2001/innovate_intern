@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: user-service
+  template:
+    metadata:
+      labels:
+        app: user-service
+    spec:
+      containers:
+      - name: user-service
+        image: user-service:latest
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: "250m" # Request 250 millicpu (0.25 CPU core)
+            memory: "256Mi" # Request 256 MiB of memory
+          limits:
+            cpu: "500m" # Limit to 500 millicpu (0.5 CPU core)
+            memory: "512Mi" # Limit to 512 MiB of memory
+
